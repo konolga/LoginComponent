@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace webAPI.Dto
 {
     public class UserForRegisterDto
