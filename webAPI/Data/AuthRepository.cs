@@ -11,10 +11,25 @@ namespace webAPI.Data
         {
             _context = context;
         }
+
+        public async Task<User> Register(User user, string password)
+        {
+            byte [] passwordHash, passwordSalt;
+            CreatePasswordHash (password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
         public async Task<User> Login(string username, string identifier, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username && x.Identifier == identifier);
-
+            var user = await _context.Users.FirstOrDefaultAsync( u => u.Username == username && u.Identifier == identifier);
+                                        
             if (user == null)
             return null;
 
@@ -22,6 +37,13 @@ namespace webAPI.Data
             return null;
 
             return user;
+        }
+
+        public async Task<bool> UserExists(string username)
+        {
+           if (await _context.Users.AnyAsync(x => x.Username == username))
+           return true;
+           return false;
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -47,26 +69,5 @@ namespace webAPI.Data
             return true;
         }
 
-
-        public async Task<User> Register(User user, string password)
-        {
-            byte [] passwordHash, passwordSalt;
-            CreatePasswordHash (password, out passwordHash, out passwordSalt);
-
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-            return user;
-        }
-
-        public async Task<bool> UserExists(string username)
-        {
-           if (await _context.Users.AnyAsync(x => x.Username == username))
-           return true;
-           return false;
-        }
     }
 }

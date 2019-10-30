@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -38,7 +37,8 @@ namespace webAPI.Controllers
 
             var userToCreate = new User
             {
-                Username = userForRegisterDto.Username
+                Username = userForRegisterDto.Username,
+                Identifier = userForRegisterDto.Identifier
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
@@ -47,17 +47,21 @@ namespace webAPI.Controllers
 
         [HttpPost("login")]
          public async Task<IActionResult> Login (UserForLoginDto userForLoginDto)
-         {        
+         {  
+
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), 
-                                                 userForLoginDto.Password,
-                                                 userForLoginDto.Identifier.ToLower());
+                                                 userForLoginDto.Identifier.ToLower(),
+                                                 userForLoginDto.Password);
+
+
             if(userFromRepo == null)
                 return Unauthorized();
 
             var claims = new[]
             {
                 new Claim (ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim (ClaimTypes.Name, userFromRepo.Username)
+                new Claim (ClaimTypes.Name, userFromRepo.Username),
+
             };
             var key = new SymmetricSecurityKey (Encoding.UTF8
                 .GetBytes(_config.GetSection("AppSettings:Token").Value));

@@ -6,7 +6,7 @@ namespace webAPI.Data
     public interface IAuthRepository
     {
         Task <User> Register (User user, string password);
-        Task <User> Login (string username, string Identifier, string password);
-         Task <bool> UserExists (string username);   
+        Task <User> Login (string username, string identifier, string password);
+        Task <bool> UserExists (string username);   
     }
 }
