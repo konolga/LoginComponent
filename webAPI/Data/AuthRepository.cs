@@ -28,7 +28,9 @@ namespace webAPI.Data
 
         public async Task<User> Login(string username, string identifier, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync( u => u.Username == username && u.Identifier == identifier);
+            var user = await _context.Users.FirstOrDefaultAsync( u => 
+                                            u.Username == username 
+                                            && u.Identifier == identifier);
                                         
             if (user == null)
             return null;
@@ -39,9 +41,10 @@ namespace webAPI.Data
             return user;
         }
 
-        public async Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username, string identifier)
         {
-           if (await _context.Users.AnyAsync(x => x.Username == username))
+           if (await _context.Users.AnyAsync(x => x.Username == username
+                                                    &&x.Identifier == identifier))
            return true;
            return false;
         }

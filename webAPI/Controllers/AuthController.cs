@@ -32,7 +32,8 @@ namespace webAPI.Controllers
         public async Task<IActionResult> Register (UserForRegisterDto userForRegisterDto)
         {
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
-            if (await _repo.UserExists(userForRegisterDto.Username))
+            userForRegisterDto.Identifier = userForRegisterDto.Identifier.ToLower();
+            if (await _repo.UserExists(userForRegisterDto.Username, userForRegisterDto.Identifier))
                 return BadRequest ("Username already exist");
 
             var userToCreate = new User
