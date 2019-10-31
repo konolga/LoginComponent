@@ -1,0 +1,85 @@
+<form #registerForm="ngForm" (ngSubmit)="register()">
+
+  <h2 class="text-center text-primary">Sign Up</h2>
+
+  <hr>
+  <div class="form-group">
+    <input type="text" class="form-control" required name="username"
+    [(ngModel)]="model.Username" placeholder="Username">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="identifier"
+    [(ngModel)]="model.Identifier" placeholder="Identifier">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="address"
+    rows="2"
+    [(ngModel)]="model.Address" placeholder="Address">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="city"
+    [(ngModel)]="model.City" placeholder="City">
+  </div>
+
+  <div class="form-group">
+    <input type="url" class="form-control" name="url"
+    [(ngModel)]="model.Url" placeholder="Url">
+  </div>
+
+  <div class="form-group">
+    <input type="email" class="form-control"  name="email"
+    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+     required
+    [(ngModel)]="model.Email" placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    <input type="phone" class="form-control" required name="phone"
+    [(ngModel)]="model.Phone" placeholder="Phone">
+  </div>
+
+  <div class="form-group">
+    <input type="phone" class="form-control" required name="additionalPhone"
+    [(ngModel)]="model.AdditionalPhone" placeholder="AdditionalPhone">
+  </div>
+
+  <div class="form-group">
+    <input type="phone" class="form-control" required name="fax"
+    [(ngModel)]="model.Fax" placeholder="Fax">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  name="mainBusiness"
+    [(ngModel)]="model.MainBusiness" placeholder="MainBusiness">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  name="secondaryBusiness"
+    [(ngModel)]="model.SecondaryBusiness" placeholder="SecondaryBusiness">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  name="status"
+    [(ngModel)]="model.Status" placeholder="Status">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  name="description"
+    rows="10"
+    [(ngModel)]="model.Description" placeholder="Description">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" required name="password"
+    [(ngModel)]="model.password" placeholder="Password">
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Register</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+

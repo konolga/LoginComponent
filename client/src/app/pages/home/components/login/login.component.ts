@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/core/services/authService/auth.service';
 import { AlertifyService } from 'src/app/core/services/AlertifyService/alertify.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/user';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  model: any = {};
-  photoUrl: string;
+  @Output() cancelLogin = new EventEmitter();
+  user = {} as User;
+  username = new FormControl('', [Validators.required]);
+  identifier = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
@@ -20,11 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
+    this.user = {Id: null, Username: this.username.value, Identifier: this.identifier.value, Password: this.password.value};
+    this.authService.login(this.user).subscribe(next => {
         this.alertify.success('logged in successfully');
       },
       error => {
-        this.alertify.error(error);
+        this.alertify.error(error.error.title);
+        console.log(error.error.errors);
       }, () => {
         this.router.navigate(['/admin']);
       });
@@ -34,13 +40,17 @@ export class LoginComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.authService.decodedToken = null;
-    this.authService.currentUser = null;
-    this.alertify.message('logged out');
-    this.router.navigate(['/home']);
+
+
+  cancel() {
+    this.cancelLogin.emit(false);
+  }
+
+  getErrorMessage() {
+    return  this.username.hasError('required') ? '*Username is mandatory' :
+            this.identifier.hasError('required') ? '*Identifier is mandatory' :
+            this.password.hasError('required') ? '*Password is mandatory' :
+            '';
   }
 
 }

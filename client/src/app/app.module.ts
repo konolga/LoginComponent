@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { CoreModule } from './core/core.module';
-import { AdminModule } from './pages/admin/admin.module';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +18,7 @@ import { AdminModule } from './pages/admin/admin.module';
     AppRoutingModule,
     CoreModule,
     PagesModule,
-    RouterModule,
-    AdminModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

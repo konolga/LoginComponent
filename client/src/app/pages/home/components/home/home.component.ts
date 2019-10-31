@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
-  values: any;
+  loginMode = false;
 
   constructor() { }
 
@@ -23,6 +23,14 @@ export class HomeComponent implements OnInit {
 
   cancelRegisterMode(registerMode: boolean){
     this.registerMode = false;
+  }
+
+  loginToggle() {
+    this.loginMode = true;
+  }
+
+  cancelLoginMode(loginMode: boolean){
+    this.loginMode = false;
   }
 
 }

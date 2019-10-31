@@ -16,7 +16,7 @@ namespace webAPI.Dto
 
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = "Characters are not allowed")]
-        [StringLength(25, MinimumLength=4, ErrorMessage="Password must be between 4 and 25 characters")]
+        [StringLength(25, MinimumLength=6, ErrorMessage="Password must be between 6 and 25 characters")]
         public string Password { get; set; }
 
     }

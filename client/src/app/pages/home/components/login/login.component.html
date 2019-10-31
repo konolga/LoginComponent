@@ -1,1 +1,31 @@
-<p>login works!</p>
+<form #registerForm="ngForm" (ngSubmit)="login()">
+
+  <h2 class="text-center text-primary">Login</h2>
+
+  <hr>
+  <div class="form-group">
+    <input type="text" class="form-control" name="username"
+    [formControl]="username"
+    placeholder="Username">
+    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">{{getErrorMessage()}}</div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="identifier"
+    [formControl]="identifier"
+     placeholder="Company identifier">
+    <div *ngIf="identifier.invalid && identifier.dirty" class="alert alert-danger">{{getErrorMessage()}}</div>
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="password"
+    [formControl]="password"
+     placeholder="Password">
+    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">{{getErrorMessage()}}</div>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Login</button>
+    <button class="btn btn-danger" type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
