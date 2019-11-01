@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
     this.user = {Id: null, Username: this.username.value, Identifier: this.identifier.value, Password: this.password.value};
     this.authService.login(this.user).subscribe(next => {
         this.alertify.success('logged in successfully');
+        this.router.navigate(['/admin']);
+        console.log(this.router)
       },
       error => {
         this.alertify.error(error.error.title);
         console.log(error.error.errors);
-      }, () => {
-        this.router.navigate(['/admin']);
       });
   }
 

@@ -4,13 +4,13 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 
-const routes: Routes = [
-  {path: 'admin', component: AdminComponent,
-  canActivate: [AuthGuard]}
+export const adminRoutes: Routes = [
+  {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(adminRoutes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+
+export class AdminRouting { }

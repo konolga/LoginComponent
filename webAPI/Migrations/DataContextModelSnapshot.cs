@@ -16,7 +16,7 @@ namespace webAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity("webAPI.Models.User", b =>
+            modelBuilder.Entity("webAPI.Models.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -33,13 +33,7 @@ namespace webAPI.Migrations
 
                     b.Property<string>("Fax");
 
-                    b.Property<string>("Identifier");
-
                     b.Property<string>("MainBusiness");
-
-                    b.Property<byte[]>("PasswordHash");
-
-                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("Phone");
 
@@ -48,6 +42,54 @@ namespace webAPI.Migrations
                     b.Property<string>("Status");
 
                     b.Property<string>("Url");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("webAPI.Models.CompanyContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AdditionalPhone");
+
+                    b.Property<int>("CompanyId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Fax");
+
+                    b.Property<string>("MobilePhone");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("Position");
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompanyContacts");
+                });
+
+            modelBuilder.Entity("webAPI.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Identifier");
+
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("Username");
 

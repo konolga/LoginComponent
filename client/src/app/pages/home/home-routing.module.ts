@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
 
-const routes: Routes = [
+const homeRoutes: Routes = [
   {path: 'home', component: HomeComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(homeRoutes)],
   exports: [RouterModule]
 })
 export class HomeRoutingModule { }
