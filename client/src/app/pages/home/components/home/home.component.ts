@@ -9,27 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   registerMode = false;
   loginMode = false;
-
   constructor() { }
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() { }
   registerToggle() {
     this.registerMode = true;
   }
-
-
-  cancelRegisterMode(registerMode: boolean){
+  cancelRegisterMode(registerMode: boolean) {
     this.registerMode = false;
   }
-
   loginToggle() {
     this.loginMode = true;
   }
-
-  cancelLoginMode(loginMode: boolean){
+  cancelLoginMode(loginMode: boolean) {
     this.loginMode = false;
   }
 

@@ -9,21 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  viewCompaniesMode = false;
+  createCompanyMode = false;
+  constructor() { }
 
+  ngOnInit() {}
 
-  constructor(private authService: AuthService,
-              private alertify: AlertifyService,
-              private router: Router) { }
-
-  ngOnInit() {
+  viewCompaniesToggle() {
+    this.viewCompaniesMode = true;
+    this.createCompanyMode = false;
   }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.authService.decodedToken = null;
-    this.authService.currentUser = null;
-    this.alertify.message('logged out');
-    this.router.navigate(['/home']);
+  createCompanyToggle() {
+    this.createCompanyMode = true;
+    this.viewCompaniesMode = false;
   }
-
 }

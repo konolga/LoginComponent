@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompanyCardComponent } from './company-card.component';
+import { HeaderNavComponent } from './header-nav.component';
 
-describe('CompanyCardComponent', () => {
-  let component: CompanyCardComponent;
-  let fixture: ComponentFixture<CompanyCardComponent>;
+describe('HeaderNavComponent', () => {
+  let component: HeaderNavComponent;
+  let fixture: ComponentFixture<HeaderNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompanyCardComponent ]
+      declarations: [ HeaderNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompanyCardComponent);
+    fixture = TestBed.createComponent(HeaderNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

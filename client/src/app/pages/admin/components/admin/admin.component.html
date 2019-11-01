@@ -1,8 +1,25 @@
-<h1>Welcome to your CRM login panel</h1>
-<div class="container mt-5">
-  <div *ngIf="!registerMode&&!loginMode" class="text-center">
 
+<div class="container mt-5">
       <div class="form-group">
-        <button class="btn btn-danger btn-lg" (click)="logout()">Logout</button>
+          <button class="btn btn-info btn-lg" (click)=viewCompaniesToggle() >Manage companies</button>
+          <button class="btn btn-info btn-lg" (click)=createCompanyToggle()>Create new company</button>
+
+
       </div>
     </div>
+    <div *ngIf="viewCompaniesMode" class="container">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <app-company-card></app-company-card>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="createCompanyMode" class="container">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <app-create-company></app-create-company>
+          </div>
+        </div>
+      </div>
+
